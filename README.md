@@ -8,7 +8,7 @@ AI agent 技能集合。每个 skill 是一个独立的、可被 coding agent（
 agent-skills/
 ├── minimax-cli-skills/          # MiniMax 相关技能
 │   ├── minimax-vision-describe/ # 图片视觉分析
-│   └── minimax-web-search/     # 网页搜索（开发中）
+│   └── minimax-web-search/      # 网页搜索
 └── <provider>/                  # 按工具/服务提供商组织
     └── <skill-name>/
         ├── SKILL.md             # 技能定义（必需）
@@ -32,16 +32,46 @@ python scripts/describe.py <image-path> [--prompt "<instruction>"] [--timeout <s
 
 支持的图片格式：`.jpg`、`.jpeg`、`.png`、`.webp`（本地文件或 HTTP(S) URL）。
 
+### minimax-web-search
+
+基于 MiniMax 搜索 API 的网页搜索技能。让 agent 能够搜索实时信息、最新数据、当前事件等训练数据无法覆盖的内容。
+
+**前置条件：** 安装 [minimax-cli](https://github.com/GalaxyHacks/minimax-cli) 并配置 API key。
+
+**使用方式：**
+
+```bash
+python scripts/search.py "<query>" [--timeout <seconds>]
+```
+
+**特性：**
+
+- 自动检测 CLI 安装和认证状态
+- 结构化 JSON 输出（`results` 数组，每项含 `title`、`link`、`snippet`、`date`）
+- 自动匹配用户语言（中文提问用中文搜索）
+- 4 种错误退出码（CLI 未安装 / 未认证 / CLI 错误 / API 错误），每种有明确的用户引导
+- 防回退规则：搜索失败时不编造结果，直接报告错误
+
+**错误处理：**
+
+| 退出码 | 含义 | 用户引导 |
+|--------|------|----------|
+| 0 | 成功（结果可能为空） | 正常返回 |
+| 1 | CLI 未安装 | `npm install -g minimax-cli` |
+| 2 | 未认证 | `mmx auth` 或设置 `MINIMAX_API_KEY` |
+| 3 | CLI 执行错误 | 报告错误，用户决定下一步 |
+| 4 | API 错误 | 报告错误，用户决定下一步 |
+
 ## 安装
 
 将目标 skill 目录复制到你的 agent 配置目录下：
 
 ```bash
 # Claude Code
-cp -r minimax-cli-skills/minimax-vision-describe ~/.config/claude-code/skills/
+cp -r minimax-cli-skills/minimax-web-search ~/.config/claude-code/skills/
 
 # opencode
-cp -r minimax-cli-skills/minimax-vision-describe ~/.config/opencode/skills/
+cp -r minimax-cli-skills/minimax-web-search ~/.config/opencode/skills/
 ```
 
 agent 会自动发现 `SKILL.md` 并在匹配场景下激活该技能。

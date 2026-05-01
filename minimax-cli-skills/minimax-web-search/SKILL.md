@@ -67,9 +67,11 @@ When the command fails, read `references/exit-codes.md` for detailed error class
 
 ## Error Recovery
 
-- **Exit 1:** Guide user to install `mmx` CLI
-- **Exit 2:** Guide user to run `mmx auth` or set `MINIMAX_API_KEY` env var
-- **Exit 3 or 4:** Retry once with a simpler query; if still fails, report the error message from JSON
+When the script exits non-zero, read the `message` field from JSON output and report it to the user. Do NOT silently retry or fabricate results.
+
+- **Exit 1:** Tell user `mmx` CLI is not installed, suggest `npm install -g minimax-cli`
+- **Exit 2:** Tell user authentication is not configured, suggest running `mmx auth` or setting `MINIMAX_API_KEY` env var
+- **Exit 3 or 4:** Report the error message from JSON output directly to the user — let the user decide next steps
 
 ## Gotchas
 

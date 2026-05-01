@@ -1,8 +1,0 @@
-{
-  "assertion_results": [
-    { "text": "使用了 --prompt 参数且内容与颜色和标注关注点一致", "passed": true, "evidence": "使用了颜色分析prompt" },
-    { "text": "识别了图中使用的不同颜色", "passed": true, "evidence": "识别了cyan/blue、red、light purple、light green、white、black共6种颜色" },
-    { "text": "描述了每种颜色对应的内容或元素", "passed": true, "evidence": "每种颜色都有对应标注：cyan=keys、red=hash function+collision、light purple=occupied buckets等" },
-    { "text": "包含了归属说明", "passed": true, "evidence": "包含归属前缀" }
-  ], "summary": { "passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0 }
-}

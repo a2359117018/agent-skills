@@ -1,8 +1,0 @@
-{
-  "assertion_results": [
-    { "text": "使用了 describe.py 脚本调用", "passed": true, "evidence": "通过 describe.py 执行" },
-    { "text": "没有直接调用 mmx 命令", "passed": true, "evidence": "使用 describe.py 而非 mmx" },
-    { "text": "输出了对图片内容的文字描述", "passed": true, "evidence": "输出Java List接口思维导图的中文描述" },
-    { "text": "包含归属说明", "passed": true, "evidence": "包含归属前缀" }
-  ], "summary": { "passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0 }
-}

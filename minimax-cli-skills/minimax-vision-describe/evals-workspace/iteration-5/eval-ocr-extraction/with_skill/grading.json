@@ -1,8 +1,0 @@
-{
-  "assertion_results": [
-    { "text": "向 describe.py 传递了 -Prompt 参数用于 OCR 提取", "passed": true, "evidence": "使用了OCR风格prompt" },
-    { "text": "输出了图片中可见的文字内容", "passed": true, "evidence": "成功提取JVM永久代→元空间演进的中文文本" },
-    { "text": "文字保持了原始出现的顺序", "passed": true, "evidence": "文本按JDK 6→7→8时间线顺序输出" },
-    { "text": "输出中包含归属说明", "passed": true, "evidence": "包含归属前缀" }
-  ], "summary": { "passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0 }
-}

@@ -1,7 +1,0 @@
-无法分析图片：指定的图片文件 `screenshots/error-log.png` 不存在。
-
-describe.py 脚本返回了 CLI_ERROR 错误：
-- 错误类型：CLI_ERROR
-- 错误信息：Image file not found: F:\IdeaProjects\Minimax-cli-skills\screenshots\error-log.png
-
-请确认图片文件路径是否正确，或提供有效的图片文件后重试。

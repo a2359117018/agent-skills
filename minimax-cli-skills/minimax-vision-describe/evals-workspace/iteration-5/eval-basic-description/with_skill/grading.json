@@ -1,8 +1,0 @@
-{
-  "assertion_results": [
-    { "text": "输出了对图片内容的文字描述", "passed": true, "evidence": "详细描述了Java List接口思维导图" },
-    { "text": "描述中提到了图片里的关键视觉元素", "passed": true, "evidence": "涵盖ArrayList/Vector/LinkedList的方法、数据结构和线程安全性" },
-    { "text": "包含归属说明", "passed": true, "evidence": "包含 (Image analysis) 归属前缀" },
-    { "text": "使用了 describe.py 脚本", "passed": true, "evidence": "通过 describe.py 执行" }
-  ], "summary": { "passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0 }
-}

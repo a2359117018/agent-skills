@@ -1,4 +1,4 @@
 .idea
-evals
-evals-workspace
+**/evals/
+**/evals-workspace/
 *_mock_*

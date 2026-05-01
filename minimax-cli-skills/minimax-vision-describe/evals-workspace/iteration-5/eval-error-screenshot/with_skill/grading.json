@@ -1,8 +1,0 @@
-{
-  "assertion_results": [
-    { "text": "使用了 --prompt 参数且内容与查找错误信息意图一致", "passed": true, "evidence": "使用了错误查找prompt" },
-    { "text": "提取了图片中可见的文字内容", "passed": true, "evidence": "提取了JVM内存管理相关文本" },
-    { "text": "没有编造不存在的错误信息", "passed": true, "evidence": "明确说明'没有报错信息'，如实描述内容" },
-    { "text": "包含了归属说明", "passed": true, "evidence": "包含归属前缀" }
-  ], "summary": { "passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0 }
-}

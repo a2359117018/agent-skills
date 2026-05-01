@@ -1,8 +1,0 @@
-{
-  "assertion_results": [
-    { "text": "使用了 --prompt 参数且内容与用户架构分析意图一致", "passed": true, "evidence": "使用了架构分析prompt" },
-    { "text": "输出使用中文描述图片内容", "passed": true, "evidence": "全部中文输出：键值输入层、哈希函数与索引层、数据存储层" },
-    { "text": "描述了各架构层次的作用", "passed": true, "evidence": "描述了三层架构及其功能" },
-    { "text": "包含了归属说明", "passed": true, "evidence": "包含归属前缀" }
-  ], "summary": { "passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0 }
-}

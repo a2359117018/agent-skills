@@ -1,0 +1,30 @@
+{
+  "assertion_results": [
+    {
+      "text": "使用了针对性的 prompt（如 Architecture diagram 类型的 prompt 策略）",
+      "passed": true,
+      "evidence": "使用了 'Summarize the architecture layers, key components, and data flow. List unknown labels.'"
+    },
+    {
+      "text": "识别并列举了图中的组件或元素",
+      "passed": true,
+      "evidence": "识别了Key Space, Hash Function, Bucket Array, Data Record Layer等组件"
+    },
+    {
+      "text": "描述了组件之间的关系或交互方式",
+      "passed": true,
+      "evidence": "详细描述了数据流动：Input -> Hashing -> Indexing -> Collision Handling -> Retrieval"
+    },
+    {
+      "text": "输出使用了结构化格式（列表、分类等）",
+      "passed": true,
+      "evidence": "使用了4个分类部分，每个部分有项目符号列表"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

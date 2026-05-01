@@ -1,0 +1,41 @@
+This image is a mind map illustrating the **List** interface in Java, focusing on its common methods and three primary implementation classes: `ArrayList`, `Vector`, and `LinkedList`.
+
+Here is a breakdown of the information contained in the mind map:
+
+### 1. Specific Functions of the List Interface (特有功能)
+These are methods specifically defined within the `List` interface beyond what is in the base `Collection` interface:
+*   `void add(int index, Object obj)`: Adds an element at the specified position.
+*   `Object remove(int index)`: Removes the element at the specified index and returns it.
+*   `Object set(int index, Object obj)`: Replaces the element at the specified index with a new value and returns the old value.
+*   `int indexOf(Object o)`: Returns the index of the first occurrence of the specified element.
+*   `Object get(int index)`: Retrieves the element at the specified position.
+*   `ListIterator listIterator()`: Returns a list iterator for the list.
+*   `List subList(int fromIndex, int toIndex)`: Returns a part of the collection as a new list.
+
+---
+
+### 2. Classification of List Implementations (分类)
+
+#### **ArrayList**
+*   **Characteristics (特点):**
+    *   Underlying data structure is an **array**. This makes **queries fast** but **additions/deletions slow** (due to shifting elements).
+    *   It is **not thread-safe**, which results in **high efficiency**.
+*   **Specific Functions (特有功能):** It has no unique functions of its own, but it is the most commonly used implementation.
+
+#### **Vector**
+*   **Characteristics (特点):**
+    *   Underlying data structure is also an **array**. Queries are fast; additions/deletions are slow.
+    *   It is **thread-safe**, making it **less efficient** (lower performance) than `ArrayList`.
+*   **Specific Functions (特有功能):** Includes legacy methods that have modern equivalents:
+    *   `public void addElement(E obj)`: Equivalent to `add()`.
+    *   `public E elementAt(int index)`: Equivalent to `get()`.
+    *   `public Enumeration<E> elements()`: Equivalent to `iterator()`.
+
+#### **LinkedList**
+*   **Characteristics (特点):**
+    *   Underlying data structure is a **linked list**. This makes **queries slow** (must traverse) but **additions/deletions fast** (only links need updating).
+    *   It is **not thread-safe**, resulting in **high efficiency**.
+*   **Specific Functions (特有功能):** Provides methods specifically for accessing ends of the list:
+    *   **Add:** `addFirst()`, `addLast()`
+    *   **Remove:** `removeFirst()`, `removeLast()`
+    *   **Get:** `getFirst()`, `getLast()`

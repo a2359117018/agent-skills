@@ -1,0 +1,11 @@
+﻿Based on the image analysis: The image provided does not contain an error message or a stack trace. It is a technical excerpt (likely from a book like *Understanding the Java Virtual Machine*) discussing the evolution of the HotSpot JVM's memory architecture.
+
+The red underlined portions describe the transition from using the "Permanent Generation" (PermGen) to "Metaspace" in native memory across different versions of the Java Development Kit (JDK).
+
+### **Extracted Text (Context):**
+
+**Original Chinese Text:**
+"...虚拟机时，但因为两者对方法区实现的差异而面临诸多困难。考虑到HotSpot未来的发展，在JDK 6的时候HotSpot开发团队就有放弃永久代，逐步改为采用本地内存（Native Memory）来实现方法区的计划了[1]，到了JDK 7的HotSpot，已经把原本放在永久代的字符串常量池、静态变量等移出，而到了JDK 8，终于完全废弃了永久代的概念，改用与JRockit、J9一样在本地内存中实现的元空间（Metaspace）来代替，把JDK 7中永久代还剩余的内容（主要是类型信息）全部移到元空间中。"
+
+**English Translation (for clarification):**
+"...virtual machine, but faced many difficulties due to differences in Method Area implementation between the two. Considering the future development of HotSpot, during the JDK 6 era, the HotSpot development team already had plans to abandon the Permanent Generation (PermGen) and gradually move towards using Native Memory to implement the Method Area [1]. By JDK 7, HotSpot had already moved out the string constant pool, static variables, etc., which were originally placed in PermGen. Finally, in JDK 8, the concept of Permanent Generation was completely abandoned and replaced by Metaspace, which is implemented in native memory just like JRockit and J9, moving all remaining contents of PermGen from JDK 7 (mainly type information) into Metaspace."

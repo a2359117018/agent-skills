@@ -1,0 +1,30 @@
+{
+  "assertion_results": [
+    {
+      "text": "输出了对图片内容的文字描述",
+      "passed": true,
+      "evidence": "输出详细描述了Java List接口的思维导图内容，包括ArrayList、Vector、LinkedList及其特点"
+    },
+    {
+      "text": "描述中提到了图片里的关键视觉元素",
+      "passed": true,
+      "evidence": "描述涵盖了思维导图的主要组成部分：List的特有功能、ArrayList、Vector、LinkedList的特点"
+    },
+    {
+      "text": "包含归属说明（如 'Based on image analysis' 或 '根据图像分析'）",
+      "passed": false,
+      "evidence": "输出中没有归属说明语句"
+    },
+    {
+      "text": "使用了 describe.ps1 脚本（而非其他视觉工具或直接猜测）",
+      "passed": true,
+      "evidence": "通过 describe.ps1 脚本执行"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  }
+}

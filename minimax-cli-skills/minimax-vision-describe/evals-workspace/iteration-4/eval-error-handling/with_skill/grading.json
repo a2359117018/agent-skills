@@ -1,0 +1,30 @@
+{
+  "assertion_results": [
+    {
+      "text": "使用了 describe.py 脚本调用（而非凭空猜测图片内容）",
+      "passed": true,
+      "evidence": "执行了 describe.py 脚本并收到 CLI_ERROR 返回"
+    },
+    {
+      "text": "没有编造或虚构图片内容",
+      "passed": true,
+      "evidence": "输出只包含错误报告，没有编造任何图片内容"
+    },
+    {
+      "text": "向用户报告了文件不存在或无法访问的错误信息",
+      "passed": true,
+      "evidence": "明确报告'CLI_ERROR: Image file not found: ... screenshots\error-log.png'，并建议用户确认路径"
+    },
+    {
+      "text": "没有静默切换到其他视觉分析工具",
+      "passed": true,
+      "evidence": "仅使用了 describe.py，没有尝试其他工具"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

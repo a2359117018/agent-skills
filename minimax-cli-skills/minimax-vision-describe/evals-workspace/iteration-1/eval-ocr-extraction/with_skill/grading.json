@@ -1,0 +1,30 @@
+{
+  "assertion_results": [
+    {
+      "text": "向 describe.ps1 传递了 -Prompt 参数用于 OCR 提取",
+      "passed": true,
+      "evidence": "使用了 -Prompt 'Only extract all visible text exactly, preserving order and key numbering.'"
+    },
+    {
+      "text": "输出了图片中可见的文字内容",
+      "passed": true,
+      "evidence": "成功输出了关于JVM方法区的中文文本内容"
+    },
+    {
+      "text": "文字保持了原始出现的顺序",
+      "passed": true,
+      "evidence": "文本按从上到下的顺序输出，包含[1]标记"
+    },
+    {
+      "text": "输出中包含归属说明",
+      "passed": false,
+      "evidence": "输出中没有归属说明语句"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  }
+}

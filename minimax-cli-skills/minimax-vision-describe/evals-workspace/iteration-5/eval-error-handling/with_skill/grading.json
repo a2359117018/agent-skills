@@ -1,0 +1,8 @@
+{
+  "assertion_results": [
+    { "text": "使用了 describe.py 脚本调用", "passed": true, "evidence": "执行 describe.py 并收到 CLI_ERROR" },
+    { "text": "没有编造或虚构图片内容", "passed": true, "evidence": "仅报告错误，无虚构内容" },
+    { "text": "向用户报告了文件不存在的错误信息", "passed": true, "evidence": "报告 'Image file not found'" },
+    { "text": "没有静默切换到其他视觉分析工具", "passed": true, "evidence": "仅使用 describe.py" }
+  ], "summary": { "passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0 }
+}

@@ -1,0 +1,30 @@
+{
+  "assertion_results": [
+    {
+      "text": "使用了 describe.py 脚本调用（命令中包含 describe.py）",
+      "passed": true,
+      "evidence": "通过 describe.py 脚本执行（子代理遵循Critical Rule）"
+    },
+    {
+      "text": "没有直接调用 mmx 命令（命令中不包含 'mmx vision' 或 'mmx --prompt'）",
+      "passed": true,
+      "evidence": "没有直接调用mmx，而是通过describe.py脚本间接调用"
+    },
+    {
+      "text": "输出了对图片内容的文字描述",
+      "passed": true,
+      "evidence": "输出中文描述：'这张图片是一张关于 Java 中 List 接口的思维导图'，涵盖特有功能和3个实现类对比"
+    },
+    {
+      "text": "包含归属说明",
+      "passed": true,
+      "evidence": "输出首行包含 'Based on the image analysis:' 归属前缀"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

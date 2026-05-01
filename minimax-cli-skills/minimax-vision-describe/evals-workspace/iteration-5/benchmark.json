@@ -1,0 +1,38 @@
+{
+  "run_summary": {
+    "with_skill": {
+      "vision_describe": {
+        "pass_rate": { "mean": 1.0, "stddev": 0 },
+        "evals": 9,
+        "total_assertions": 36,
+        "passed_assertions": 36,
+        "details": {
+          "eval-basic-description": { "pass_rate": 1.0, "passed": 4, "total": 4 },
+          "eval-ocr-extraction": { "pass_rate": 1.0, "passed": 4, "total": 4 },
+          "eval-structured-analysis": { "pass_rate": 1.0, "passed": 4, "total": 4 },
+          "eval-script-enforcement": { "pass_rate": 1.0, "passed": 4, "total": 4 },
+          "eval-error-handling": { "pass_rate": 1.0, "passed": 4, "total": 4 },
+          "eval-multilingual": { "pass_rate": 1.0, "passed": 4, "total": 4 },
+          "eval-ui-mockup": { "pass_rate": 1.0, "passed": 4, "total": 4 },
+          "eval-error-screenshot": { "pass_rate": 1.0, "passed": 4, "total": 4 },
+          "eval-non-template-request": { "pass_rate": 1.0, "passed": 4, "total": 4 }
+        }
+      }
+    },
+    "refactor_metrics": {
+      "skill_md_lines_before": 130,
+      "skill_md_lines_after": 58,
+      "reduction_pct": 55.4,
+      "sections_before": ["When to Use", "When NOT to Use", "Critical Rule", "Gotchas", "Usage", "Prompt Strategy", "Output Contract", "Examples"],
+      "sections_after": ["Critical Rule & Usage", "Gotchas", "Prompt Strategy", "Output Contract"],
+      "new_file": "references/exit-codes.md"
+    },
+    "iteration_history": {
+      "iteration_1": { "mean_pass_rate": 0.8125, "evals": 4 },
+      "iteration_2": { "mean_pass_rate": 1.0, "evals": 4 },
+      "iteration_3": { "mean_pass_rate": 1.0, "evals": 8 },
+      "iteration_4": { "mean_pass_rate": 1.0, "evals": 9 },
+      "iteration_5": { "mean_pass_rate": 1.0, "evals": 9, "change": "refactored SKILL.md per best practices" }
+    }
+  }
+}

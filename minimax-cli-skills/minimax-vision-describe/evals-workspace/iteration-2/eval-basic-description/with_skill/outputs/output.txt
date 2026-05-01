@@ -1,0 +1,38 @@
+﻿Based on the image analysis: 这张图片是Java集合框架中`List`接口及其主要实现类的思维导图，内容整理如下：
+
+### **List 接口**
+
+#### **1. 特有功能（List 接口定义的方法）**
+- `void add(int index, Object obj)`：在指定位置添加元素。
+- `Object remove(int index)`：根据指定索引删除元素，并把删除的元素返回。
+- `Object set(int index, Object obj)`：把指定索引位置的元素修改为指定的值，返回修改前的值。
+- `int indexOf(Object o)`：返回指定元素在集合中第一次出现的索引。
+- `Object get(int index)`：获取指定位置的元素。
+- `ListIterator listIterator()`：获取列表迭代器。
+- `List subList(int fromIndex, int toIndex)`：截取集合（子列表）。
+
+#### **2. 分类（主要实现类）**
+
+##### **ArrayList**
+- 底层数据结构是**数组**。
+- **查询快，增删慢**。
+- **线程不安全**，效率高。
+- 没有特有功能，但它是最常用的实现类。
+
+##### **Vector**
+- 底层数据结构是**数组**。
+- **查询快，增删慢**。
+- **线程安全**，效率低。
+- 特有功能（旧版遗留方法）：
+  - `public void addElement(E obj)`：相当于 `add()`。
+  - `public E elementAt(int index)`：相当于 `get()`。
+  - `public Enumeration<E> elements()`：相当于 `iterator()`。
+
+##### **LinkedList**
+- 底层数据结构是**链表**。
+- **查询慢，增删快**。
+- **线程不安全**，效率高。
+- 特有功能：
+  - 添加：`addFirst()`, `addLast()`
+  - 删除：`removeFirst()`, `removeLast()`
+  - 获取：`getFirst()`, `getLast()`

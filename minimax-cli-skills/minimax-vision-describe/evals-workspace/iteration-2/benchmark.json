@@ -1,0 +1,27 @@
+{
+  "run_summary": {
+    "with_skill": {
+      "vision_describe": {
+        "pass_rate": { "mean": 1.0, "stddev": 0 },
+        "evals": 4,
+        "details": {
+          "eval-basic-description": { "pass_rate": 1.0, "passed": 4, "total": 4 },
+          "eval-ocr-extraction": { "pass_rate": 1.0, "passed": 4, "total": 4 },
+          "eval-structured-analysis": { "pass_rate": 1.0, "passed": 4, "total": 4 },
+          "eval-script-enforcement": { "pass_rate": 1.0, "passed": 4, "total": 4 }
+        }
+      }
+    },
+    "comparison_with_iteration_1": {
+      "iteration_1_mean_pass_rate": 0.8125,
+      "iteration_2_mean_pass_rate": 1.0,
+      "delta": 0.1875,
+      "improved_assertions": [
+        "eval-basic-description: 归属说明 assertion 从 FAIL → PASS",
+        "eval-ocr-extraction: 归属说明 assertion 从 FAIL → PASS",
+        "eval-script-enforcement: 归属说明 assertion 从 FAIL → PASS"
+      ],
+      "note": "iteration-1 中 3/4 eval 因缺少归属说明而失败，iteration-2 通过在 describe.py 中自动添加 (Image analysis) 前缀全部修复"
+    }
+  }
+}

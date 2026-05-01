@@ -1,0 +1,8 @@
+{
+  "assertion_results": [
+    { "text": "使用了 --prompt 参数且内容与UI组件分析意图一致", "passed": true, "evidence": "使用了UI组件分析prompt" },
+    { "text": "识别并列举了图中的视觉元素或组件", "passed": true, "evidence": "识别了root node、branching sections、nesting等UI组件" },
+    { "text": "描述了元素之间的布局或层次关系", "passed": true, "evidence": "描述了tree layout (left-to-right)和nesting关系" },
+    { "text": "包含了归属说明", "passed": true, "evidence": "包含 (Image analysis) 归属前缀" }
+  ], "summary": { "passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0 }
+}

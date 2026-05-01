@@ -1,0 +1,30 @@
+{
+  "assertion_results": [
+    {
+      "text": "输出了对图片内容的文字描述",
+      "passed": true,
+      "evidence": "输出详细描述了Java List接口思维导图内容，包括ArrayList、Vector、LinkedList及其特点、特有方法等"
+    },
+    {
+      "text": "描述中提到了图片里的关键视觉元素",
+      "passed": true,
+      "evidence": "描述涵盖了思维导图的主要组成部分：List特有功能（add/remove/set/indexOf/get/listIterator/subList）、ArrayList/Vector/LinkedList各自的数据结构、性能特点和线程安全性"
+    },
+    {
+      "text": "包含归属说明（如 'Based on image analysis' 或 '根据图像分析'）",
+      "passed": true,
+      "evidence": "输出首行包含 'Based on the image analysis:' 归属前缀"
+    },
+    {
+      "text": "使用了 describe.py 脚本（而非其他视觉工具或直接猜测）",
+      "passed": true,
+      "evidence": "通过 describe.py 脚本执行（子代理读取了SKILL.md并按Critical Rule使用describe.py）"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

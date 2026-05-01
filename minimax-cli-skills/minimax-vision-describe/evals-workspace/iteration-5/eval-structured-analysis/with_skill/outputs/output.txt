@@ -1,0 +1,44 @@
+(Image analysis) Based on the provided image, this diagram illustrates the architecture of a **Hash Map** (or Hash Table) data structure, specifically demonstrating how data is indexed and how "collisions" are handled.
+
+Here is a structured breakdown of the components and their relationships:
+
+### 1. Components and Their Roles
+
+*   **Keys (Input Data):**
+    *   **Visible Items:** Blue rectangular boxes on the left containing names: "John Smith", "Lisa Smith", "Sam Doe", "Sandra Dee", and "Ted Baker".
+    *   **Role:** These are the unique identifiers used to look up information. In a programmatic context, these are the inputs to a hash function.
+*   **Hash Function (Implied):**
+    *   **Visible Items:** Represented by the **Red Arrows** originating from the keys and pointing toward the central index.
+    *   **Role:** While not shown as a box, the logic that transforms a text-based key (like "John Smith") into a specific numeric index (like "152") is the hash function. It determines where in the index the record should be stored.
+*   **Hash Table Index (Buckets):**
+    *   **Visible Items:** The central columns of numbered boxes (e.g., 000, 001, 002; 151, 152, 153, 154; 253, 254, 255).
+    *   **Role:** This is a fixed-size array of "buckets." Each bucket corresponds to a specific numerical result from the hash function. It serves as a directory to find where the actual data resides in memory.
+*   **Status Indicators / Pointers:**
+    *   **Visible Items:** Small boxes attached to the index numbers containing an **'x'** or a **black dot with a line**.
+    *   **Role:**
+        *   **'x'**: Indicates an empty bucket where no data is currently mapped.
+        *   **Black Dot & Line (Pointer):** Represents a memory address (pointer) that directs the system to the location of the actual data record.
+*   **Data Records (Values):**
+    *   **Visible Items:** Green rectangular boxes on the right containing names and phone numbers (e.g., "Lisa Smith | 521-8976").
+    *   **Role:** These are the actual values stored in the system. The goal of the architecture is to retrieve these values quickly using the Keys.
+
+### 2. Connections and Data Flow
+
+*   **Mapping (Keys to Index):** The **Red Arrows** show the flow of data from the input key through the hashing logic to a specific index number. 
+    *   **Example:** "John Smith" and "Sandra Dee" are both being mapped toward index **152**.
+*   **Collision Indication:** The red box at index **152** and the converging red arrows from "John Smith" and "Sandra Dee" highlight a **Hash Collision**. This occurs when two different keys produce the same hash index.
+*   **Retrieval (Index to Records):** The **Black Lines with Dots** represent the interaction between the index and the physical storage of the data.
+    *   The index **001** points directly to the record for **Lisa Smith**.
+    *   The index **152** points to the record for **John Smith**.
+    *   The index **153** points to the record for **Sandra Dee**.
+    *   The index **254** points to the record for **Sam Doe**.
+*   **Collision Resolution (Chaining):** Notice the black dot on the left side of the "John Smith" record box. In many hash map implementations (like "Separate Chaining"), if a collision occurs at index 152, the index points to a list of records. The diagram shows the system resolving the collision by placing the colliding entries (John and Sandra) in adjacent or linked locations.
+
+### 3. Summary of System Architecture
+
+The system operates in a three-step flow:
+1.  **Input:** A user provides a **Key** (e.g., "Ted Baker").
+2.  **Process:** The system runs the key through a **Hash Function** (red arrows) to find a specific **Index Number** (e.g., 254) in the **Hash Table**.
+3.  **Output:** The system follows the **Pointer** (black line) from that index to the **Data Record** to retrieve the associated value (e.g., "521-5030").
+
+This architecture allows for "O(1)" or near-instant data retrieval, as the system does not need to search through every name to find a phone number; it calculates exactly where the number is stored.

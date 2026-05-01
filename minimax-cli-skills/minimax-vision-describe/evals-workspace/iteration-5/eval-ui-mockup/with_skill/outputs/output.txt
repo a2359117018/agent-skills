@@ -1,0 +1,75 @@
+(Image analysis) This image is a mind map illustrating the Java `List` interface hierarchy and its common implementations. The layout is hierarchical, flowing from left to right.
+
+### Overall Layout Hierarchy
+The mind map follows a tree structure:
+1.  **Root Node:** "List" (The starting point on the far left).
+2.  **Primary Branches:** Two main branches emerge from the root: "特有功能" (Specific Functions) and "分类" (Classification).
+3.  **Secondary/Tertiary Branches:** Details branch out further to the right, showing specific method signatures, implementation classes (`ArrayList`, `Vector`, `LinkedList`), and their respective characteristics.
+
+---
+
+### Detailed Component List and Relationships
+
+#### 1. Root Component
+*   **Type:** Card/Node (Rounded rectangle with a blue border and light blue background).
+*   **Text:** `List`
+*   **Position:** Far left; the parent node for all other components.
+
+#### 2. Primary Level Branches (Level 1)
+*   **Top Branch Label:**
+    *   **Type:** Label (Rounded rectangle with a grey border and light grey background).
+    *   **Text:** `特有功能` (Specific Functions)
+    *   **Position:** To the right of the root "List" node, connected by a curved line. It is positioned above the "分类" branch.
+*   **Bottom Branch Label:**
+    *   **Type:** Label (Rounded rectangle with an orange border and light orange background).
+    *   **Text:** `分类` (Classification)
+    *   **Position:** To the right of the root "List" node, connected by a curved line. It is positioned below the "特有功能" branch.
+
+#### 3. Level 2 - Details of "Specific Functions"
+*   **Type:** Detailed List/Table structure.
+*   **Text Content:** Contains several rows of Java method signatures and their Chinese descriptions:
+    *   `void add(int index, Object obj)`: Adds element at a specific position.
+    *   `Object remove(int index)`: Removes element based on index and returns it.
+    *   `Object set(int index, Object obj)`: Modifies element at index and returns old value.
+    *   `int indexOf(Object o)`: Returns first index of specified element.
+    *   `Object get(int index)`: Gets element at specific position.
+    *   `ListIterator listIterator()`: Returns a list iterator.
+    *   `List subList(int fromIndex, int toIndex)`: Intercepts a collection.
+*   **Position:** To the right of the "特有功能" label, connected by a horizontal line.
+
+#### 4. Level 2 - Categories of "Classification"
+Three implementation classes branch out from the "分类" label:
+*   **ArrayList Node:**
+    *   **Type:** Label (Rounded rectangle with a green border).
+    *   **Text:** `ArrayList`
+    *   **Position:** Top sub-branch of "分类", right of the "分类" label.
+*   **Vector Node:**
+    *   **Type:** Label (Rounded rectangle with a green border).
+    *   **Text:** `Vector`
+    *   **Position:** Middle sub-branch of "分类", right of the "分类" label.
+*   **LinkedList Node:**
+    *   **Type:** Label (Rounded rectangle with a green border).
+    *   **Text:** `LinkedList`
+    *   **Position:** Bottom sub-branch of "分类", right of the "分类" label.
+
+#### 5. Level 3 & 4 - Class Specifics (Nested within each implementation class)
+Each implementation class (ArrayList, Vector, LinkedList) has two sub-labels: `特点` (Characteristics) and `特有功能` (Specific Functions).
+
+*   **ArrayList Details:**
+    *   **特点 (Characteristics):** Text to the right: "Underlying data structure is array, fast query, slow add/remove", "Not thread-safe, high efficiency".
+    *   **特有功能 (Specific Functions):** Text to the right: "None, but it is the most commonly used".
+
+*   **Vector Details:**
+    *   **特点 (Characteristics):** Text to the right: "Underlying data structure is array, fast query, slow add/remove", "Thread-safe, low efficiency".
+    *   **特有功能 (Specific Functions):** List of specific methods to the right: `addElement` (equivalent to `add()`), `elementAt` (equivalent to `get()`), `elements` (equivalent to `iterator()`).
+
+*   **LinkedList Details:**
+    *   **特点 (Characteristics):** Text to the right: "Underlying data structure is linked list, slow query, fast add/remove", "Not thread-safe, high efficiency".
+    *   **特有功能 (Specific Functions):** Categorized list to the right:
+        *   **添加 (Add):** `addFirst()`, `addLast()`
+        *   **删除 (Remove):** `removeFirst()`, `removeLast()`
+        *   **获取 (Get):** `getFirst()`, `getLast()`
+
+### Visual Connection Elements
+*   **Lines:** Curved and straight lines connect nodes, indicating parent-child relationships.
+*   **Expansion/Collapse Icons:** Small circles with plus/minus signs (though all are currently expanded) indicate where branches start and end.

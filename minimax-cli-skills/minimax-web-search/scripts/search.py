@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Vision describe using minimax-cli mmx command.
+Web search using minimax-cli mmx command.
 Handles preflight checks, execution, response parsing, and error normalization.
 Exit codes: 0=success, 1=CLI_NOT_FOUND, 2=AUTH_NOT_CONFIGURED, 3=CLI_ERROR, 4=API_ERROR
 """
@@ -13,11 +13,10 @@ import subprocess
 import sys
 from argparse import ArgumentParser
 from dataclasses import dataclass
-from pathlib import Path
-from urllib.parse import urlparse
 
-SUPPORTED_EXTENSIONS = frozenset({".jpg", ".jpeg", ".png", ".webp"})
 _IS_WINDOWS = sys.platform == "win32"
+
+REQUIRED_FIELDS = ["title", "link", "snippet"]
 
 logger = logging.getLogger(__name__)
 
@@ -29,27 +28,40 @@ class CLIResult:
     stderr: str
 
 
-def run_command(cmd, timeout=120):
+def run_command(cmd, timeout=30):
     """Run a command list and return a CLIResult.
 
     On Windows, mmx is typically installed as a .cmd/.ps1 script which cannot
     be executed directly by CreateProcess.  We therefore pass ``shell=True``
-    on Windows so cmd.exe handles the script resolution.
+    on Windows so cmd.exe handles the script resolution.  When shell=True,
+    we build the command string via list2cmdline and escape ``%`` to ``%%``
+    to prevent cmd.exe environment-variable expansion in arguments.
     """
     try:
-        proc = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=timeout,
-            shell=_IS_WINDOWS,
-        )
+        if _IS_WINDOWS:
+            cmdline = subprocess.list2cmdline(cmd).replace("%", "%%")
+            proc = subprocess.run(
+                cmdline,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=timeout,
+                shell=True,
+            )
+        else:
+            proc = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=timeout,
+            )
         return CLIResult(returncode=proc.returncode, stdout=proc.stdout, stderr=proc.stderr)
     except subprocess.TimeoutExpired:
         return CLIResult(returncode=-1, stdout="", stderr=f"Command timed out after {timeout}s")
-    except Exception as e:
+    except (OSError, subprocess.SubprocessError) as e:
         return CLIResult(returncode=-1, stdout="", stderr=str(e))
 
 
@@ -77,36 +89,23 @@ def check_auth():
         return False, "Failed to parse auth response"
 
 
-def validate_image(image_path):
-    """Validate image input (local file or URL). Returns (is_valid, error_message)."""
-    parsed = urlparse(image_path)
-    if parsed.scheme in ("http", "https"):
-        return True, None
-
-    path = Path(image_path)
-    if not path.exists():
-        return False, f"Image file not found: {image_path}"
-
-    ext = path.suffix.lower()
-    if ext not in SUPPORTED_EXTENSIONS:
-        return False, f"Unsupported image format: {ext}. Supported: {', '.join(sorted(SUPPORTED_EXTENSIONS))}"
-
-    return True, None
-
-
 def clean_json_string(s):
     """Remove invalid control characters from JSON string but preserve newlines."""
     return re.sub(r"[\x00-\x09\x0b\x0c\x0e-\x1f\x7f-\x9f]", "", s)
 
 
-def run_vision_describe(image, prompt=None, timeout=120):
-    """Execute mmx vision describe command and return parsed result."""
+def validate_result(result):
+    """Validate that a result has all required fields. Returns (is_valid, missing_fields)."""
+    missing = [f for f in REQUIRED_FIELDS if f not in result or not result[f]]
+    return len(missing) == 0, missing
+
+
+def run_search(query, timeout=30):
+    """Execute mmx search command and return parsed results."""
     cmd = [
         "mmx", "--non-interactive", "--output", "json",
-        "vision", "describe", "--image", image,
+        "search", "query", "--q", query,
     ]
-    if prompt:
-        cmd.extend(["--prompt", prompt])
 
     logger.debug("Running: %s", " ".join(cmd))
     result = run_command(cmd, timeout=timeout)
@@ -135,10 +134,20 @@ def run_vision_describe(image, prompt=None, timeout=120):
             "exit_code": 4,
         }
 
-    content = data.get("content", "")
-    if not content.startswith("(Image analysis)"):
-        content = f"(Image analysis) {content}"
-    return {"content": content, "exit_code": 0}
+    organic = data.get("organic", [])
+    if not organic:
+        return {"results": [], "exit_code": 0}
+
+    validated_results = []
+    warnings = []
+    for idx, item in enumerate(organic):
+        is_valid, missing = validate_result(item)
+        if is_valid:
+            validated_results.append(item)
+        else:
+            warnings.append(f"Result {idx} missing required fields: {missing}")
+
+    return {"results": validated_results, "exit_code": 0, "warnings": warnings}
 
 
 def print_error(error_code, message):
@@ -154,10 +163,9 @@ def print_error(error_code, message):
 
 
 def main():
-    parser = ArgumentParser(description="Vision describe using minimax-cli")
-    parser.add_argument("image", help="Image path or URL")
-    parser.add_argument("--prompt", "-p", help="Prompt for analysis", default=None)
-    parser.add_argument("--timeout", "-t", type=int, default=120, help="Timeout in seconds (default: 120)")
+    parser = ArgumentParser(description="Web search using minimax-cli")
+    parser.add_argument("query", help="Search query string")
+    parser.add_argument("--timeout", "-t", type=int, default=30, help="Timeout in seconds (default: 30)")
     parser.add_argument("--verbose", "-v", action="store_true", help="Enable verbose logging")
     args = parser.parse_args()
 
@@ -166,10 +174,6 @@ def main():
         format="%(levelname)s: %(message)s",
     )
 
-    is_valid, validation_error = validate_image(args.image)
-    if not is_valid:
-        print_error(3, validation_error)
-
     if not check_cli_installed():
         print_error(1, "mmx is not installed or not on PATH")
 
@@ -177,13 +181,16 @@ def main():
     if not is_auth:
         print_error(2, auth_error)
 
-    logger.debug("Calling mmx vision describe for: %s", args.image)
-    result = run_vision_describe(args.image, args.prompt, args.timeout)
+    logger.debug("Searching for: %s", args.query)
+    result = run_search(args.query, args.timeout)
 
     if "error" in result:
         print_error(result["exit_code"], result["message"])
 
-    print(result["content"])
+    print(json.dumps({"results": result["results"]}))
+    if result.get("warnings"):
+        for w in result["warnings"]:
+            print(w, file=sys.stderr)
     sys.exit(0)
 
 
